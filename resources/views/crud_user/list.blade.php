@@ -21,9 +21,9 @@
                                 <th>{{ $user->email }}</th>
 
                                 <th>
-                                    <a href="{{ route('user.readUser', ['id' => $user->id]) }}">View</a> |
-                                    <a href="{{ route('user.updateUser', ['id' => $user->id]) }}">Edit</a> |
-                                    <a href="{{ route('user.deleteUser', ['id' => $user->id]) }}">Delete</a>
+                                    <button class="btn btn-dark btn-read" href="{{ route('user.readUser', ['id' => $user->id]) }}">View</button> 
+                                    <button class="btn btn-dark btn-update" href="{{ route('user.updateUser', ['id' => $user->id]) }}">Edit</button> 
+                                    <button class="btn btn-dark btn-delete" href="{{ route('user.deleteUser', ['id' => $user->id]) }}">Delete</button>
                                 </th>
                             </tr>
                         @endforeach
