@@ -57,6 +57,8 @@ class CrudUserController extends Controller
     {
         $request->validate([
             'name' => 'required',
+            'like' => 'required',
+            'github' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6'
         ]);
@@ -65,6 +67,8 @@ class CrudUserController extends Controller
         $check = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'like' => 'required',
+            'github' => 'required',
             'password' => Hash::make($data['password'])
         ]);
 
@@ -111,12 +115,16 @@ class CrudUserController extends Controller
 
         $request->validate([
             'name' => 'required',
+            'like' => 'required',
+            'github' => 'required',
             'email' => 'required|email|unique:users,id,'.$input['id'],
             'phone' => 'required'
         ]);
 
        $user = User::find($input['id']);
        $user->name = $input['name'];
+       $user->name = $input['like'];
+       $user->name = $input['github'];
        $user->email = $input['email'];
        $user->password = $input['password'];
        $user->save();
