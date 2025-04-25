@@ -8,7 +8,7 @@
                     <div class="card">
                         <h3 class="card-header text-center">Create User</h3>
                         <div class="card-body">
-                            <form action="{{ route('user.postUser') }}" method="POST">
+                            <form action="{{ route('user.postUser') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group mb-3">
                                     <input type="text" placeholder="Name" id="name" class="form-control" name="name"
@@ -24,6 +24,13 @@
                                         <span class="text-danger">{{ $errors->first('email') }}</span>
                                     @endif
                                 </div>
+                                <!-- <div class="form-group mb-3">
+                                    <input type="file" placeholder="Avatar" id="like" class="form-control"
+                                           name="avatar" required autofocus>
+                                    @if ($errors->has('avatar'))
+                                        <span class="text-danger">{{ $errors->first('avatar') }}</span>
+                                    @endif
+                                </div> -->
                                 <div class="form-group mb-3">
                                     <input type="text" placeholder="Like" id="like" class="form-control"
                                            name="like" required autofocus>

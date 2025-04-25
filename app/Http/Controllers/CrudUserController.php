@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Hash;
 use Session;
 use App\Models\User;
+use App\Models\Orders;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -67,8 +68,8 @@ class CrudUserController extends Controller
         $check = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'like' => 'required',
-            'github' => 'required',
+            'like' => $data['like'],
+            'github' => $data['github'],
             'password' => Hash::make($data['password'])
         ]);
 
@@ -123,8 +124,8 @@ class CrudUserController extends Controller
 
        $user = User::find($input['id']);
        $user->name = $input['name'];
-       $user->name = $input['like'];
-       $user->name = $input['github'];
+       $user->like = $input['like'];
+       $user->github = $input['github'];
        $user->email = $input['email'];
        $user->password = $input['password'];
        $user->save();
@@ -139,7 +140,8 @@ class CrudUserController extends Controller
     {
         if(Auth::check()){
             $users = User::all();
-            return view('crud_user.list', ['users' => $users]);
+            $orders = Orders::all();
+            return view('crud_user.list', ['users' => $users,'orders'=>$orders]);
         }
 
         return redirect("login")->withSuccess('You are not allowed to access');
